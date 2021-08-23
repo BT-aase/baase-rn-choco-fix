@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import Svg, { Circle, Polygon } from 'react-native-svg';
 
 export default function App() {
   return (
@@ -29,8 +29,27 @@ export default function App() {
           <View style={styles.paperRow}>
             <View>
               <Svg height="100" width="100">
-                <Circle cx="50" cy="50" r="50" fill="#f5f5dc" />
-                <Circle cx="50" cy="50" r="45" fill="pink" />
+                <Polygon
+                  points="50,5 95,50 50,95 5,50"
+                  fill="#2b1d0e"
+                  stroke="#f5f5dc"
+                  strokeWidth="3"
+                />
+                <Polygon
+                  points="50,5 95,50 50,95 5,50"
+                  fill="#2b1d0e"
+                  stroke="#f5f5dc"
+                  strokeWidth="3"
+                  transform="rotate(30, 50, 50)"
+                />
+                <Polygon
+                  points="50,5 95,50 50,95 5,50"
+                  fill="#2b1d0e"
+                  stroke="#f5f5dc"
+                  strokeWidth="3"
+                  transform="rotate(60, 50, 50)"
+                />
+                <Circle cx="50" cy="50" r="37" fill="#2b1d0e" />
               </Svg>
             </View>
           </View>
@@ -69,6 +88,7 @@ const styles = StyleSheet.create({
   paper: {
     height: '50%',
     width: '100%',
+    backgroundColor: '#d3d3d3'
   },
   paperContainer: {
     marginTop: 30,
