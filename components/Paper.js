@@ -1,49 +1,66 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from "react-redux";
 
 import Candy from './Candy';
+import { setSelectedCandy } from '../store/actions/game';
 
 const Paper = (props) => {
   const [selected, setSelected] = useState('');
 
-  const flavors = ['chocolate', 'strawberry', 'caramel'];
+  const dispatch = useDispatch();
+  const selectCandy = useSelector((state) => state.game.selectedCandy);
+  console.log(selectCandy)
 
   const select = (id) => {
-    if (id === selected){
-      setSelected('');
-    } else  {
-      setSelected(id);
-    };
+    let selectId = (id === selected) ? '' : id;
+    setSelected(selectId);
+    dispatchSelect(selectId);
   }
 
-  const view = [];
+  const dispatchSelect = (selected) => {
+    dispatch(setSelectedCandy(selected));
+  }
+
+  const paperItems = [];
+
+  const paperCandies = useSelector((state) => state.game.paperCandies);
 
   for (let i = 0; i < 3; i++) {
+    let flavors = ['chocolate', 'strawberry', 'caramel'];
+    let triangle = paperCandies[i][0];
+    let circle = paperCandies[i][1];
+    let square = paperCandies[i][2];
 
-    let triangle = flavors[i] + '-triangle';
-    let circle = flavors[i] + '-circle';
-    let square = flavors[i] + '-square';
-
-    view.push(
+    paperItems.push(
       <View key={flavors[i] + '-row'} style={styles.paperRow}>
-        <Candy
-          key={triangle}
-          id={triangle}
-          onPress={() => select(triangle)}
-          showBorder={selected === triangle}
-        />
-        <Candy
-          key={circle}
-          id={circle}
-          onPress={() => select(circle)}
-          showBorder={selected === circle}
-        />
-        <Candy
-          key={square}
-          id={square}
-          onPress={() => select(square)}
-          showBorder={selected === square}
-        />
+        {triangle !== '' ?
+          <Candy
+            key={triangle}
+            id={triangle}
+            onPress={() => select(triangle)}
+            showBorder={selected === triangle}
+          /> :
+          <View style={styles.empty} />
+        }
+        {circle !== '' ?
+          <Candy
+            key={circle}
+            id={circle}
+            onPress={() => select(circle)}
+            showBorder={selected === circle}
+          /> :
+          <View style={styles.empty} />
+        }
+        {square !== '' ?
+          <Candy
+            key={square}
+            id={square}
+            onPress={() => select(square)}
+            showBorder={selected === square}
+          /> :
+          <View style={styles.empty} />
+        }
       </View>
     )
   }
@@ -51,7 +68,7 @@ const Paper = (props) => {
   return (
     <View style={styles.paper}>
       <View style={styles.paperContainer}>
-        {view}
+        {paperItems}
       </View>
     </View>
   )
@@ -70,6 +87,11 @@ const styles = StyleSheet.create({
   paperRow: {
     flexDirection: 'row',
     marginTop: 10
+  },
+  empty: {
+    width: 100,
+    height: 100,
+    marginHorizontal: 6
   }
 });
 

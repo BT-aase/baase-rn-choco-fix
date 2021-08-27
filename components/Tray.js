@@ -2,27 +2,26 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 const Tray = (props) => {
-    return (
-        <View style={styles.tray}>
-        <View style={styles.trayContainer}>
-          <View style={styles.trayRow}>
-            <View style={styles.trayCup}></View>
-            <View style={styles.trayCup}></View>
-            <View style={styles.trayCup}></View>
-          </View>
-          <View style={styles.trayRow}>
-            <View style={styles.trayCup}></View>
-            <View style={styles.trayCup}></View>
-            <View style={styles.trayCup}></View>
-          </View>
-          <View style={styles.trayRow}>
-            <View style={styles.trayCup}></View>
-            <View style={styles.trayCup}></View>
-            <View style={styles.trayCup}></View>
-          </View>
-        </View>
+
+  const trayItems = [];
+
+  for (let i = 0; i < 3; i++) {
+    trayItems.push(
+      <View key={`row-${i}`} style={styles.trayRow}>
+        <View key={`${i}-1`} style={styles.trayCup}></View>
+        <View key={`${i}-2`} style={styles.trayCup}></View>
+        <View key={`${i}-3`} style={styles.trayCup}></View>
       </View>
     )
+  }
+
+  return (
+    <View style={styles.tray}>
+      <View style={styles.trayContainer}>
+        {trayItems}
+      </View>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
