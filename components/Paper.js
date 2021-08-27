@@ -9,7 +9,7 @@ const Paper = (props) => {
   const [selected, setSelected] = useState('');
 
   const dispatch = useDispatch();
-  
+
   const select = (id) => {
     let selectId = (id === selected) ? '' : id;
     setSelected(selectId);
@@ -22,13 +22,13 @@ const Paper = (props) => {
 
   const paperItems = [];
 
-  const paperCandies = useSelector((state) => state.game.paperCandies);
+  const paperCandy = useSelector((state) => state.game.paperCandy);
 
   for (let i = 0; i < 3; i++) {
     let flavors = ['chocolate', 'strawberry', 'caramel'];
-    let triangle = paperCandies[i][0];
-    let circle = paperCandies[i][1];
-    let square = paperCandies[i][2];
+    let triangle = paperCandy[i][0];
+    let circle = paperCandy[i][1];
+    let square = paperCandy[i][2];
 
     paperItems.push(
       <View key={flavors[i] + '-row'} style={styles.paperRow}>

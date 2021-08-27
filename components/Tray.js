@@ -19,13 +19,13 @@ const Tray = (props) => {
 
   const trayItems = [];
 
-  const trayCandies = useSelector((state) => state.game.trayCandies);
+  const trayCandy = useSelector((state) => state.game.trayCandy);
 
   for (let i = 0; i < 3; i++) {
 
-    let spotOne = trayCandies[i][0];
-    let spotTwo = trayCandies[i][1];
-    let spotThree = trayCandies[i][2];
+    let spotOne = trayCandy[i][0];
+    let spotTwo = trayCandy[i][1];
+    let spotThree = trayCandy[i][2];
 
     trayItems.push(
       <View key={`row-${i}`} style={styles.trayRow}>
