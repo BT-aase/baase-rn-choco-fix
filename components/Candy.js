@@ -103,8 +103,10 @@ const Candy = (props) => {
     
     colors(flavor);
 
+    let disabled = typeof(props.onPress) === 'undefined' ? true : false;
+
     return (
-        <TouchableOpacity onPress={props.onPress}>
+        <TouchableOpacity onPress={props.onPress} disabled={disabled}>
             <View style={candyStyle()}>
                 <Svg height="100" width="100">
                     <Polygon

@@ -9,9 +9,7 @@ const Paper = (props) => {
   const [selected, setSelected] = useState('');
 
   const dispatch = useDispatch();
-  const selectCandy = useSelector((state) => state.game.selectedCandy);
-  console.log(selectCandy)
-
+  
   const select = (id) => {
     let selectId = (id === selected) ? '' : id;
     setSelected(selectId);

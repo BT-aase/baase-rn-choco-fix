@@ -1,16 +1,46 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from "react-redux";
+
+import TrayCup from './TrayCup';
+import Candy from './Candy';
+import { placeCandy } from '../store/actions/game';
+
 
 const Tray = (props) => {
 
+  const dispatch = useDispatch();
+
+  const candyPlace = (spot, traySpot) => {
+    if (traySpot === '') {
+      dispatch(placeCandy(spot));
+    }
+  }
+
   const trayItems = [];
 
+  const trayCandies = useSelector((state) => state.game.trayCandies);
+
   for (let i = 0; i < 3; i++) {
+
+    let spotOne = trayCandies[i][0];
+    let spotTwo = trayCandies[i][1];
+    let spotThree = trayCandies[i][2];
+
     trayItems.push(
       <View key={`row-${i}`} style={styles.trayRow}>
-        <View key={`${i}-1`} style={styles.trayCup}></View>
-        <View key={`${i}-2`} style={styles.trayCup}></View>
-        <View key={`${i}-3`} style={styles.trayCup}></View>
+        {spotOne === '' ?
+          <TrayCup key={`${i}-0`} onPress={() => candyPlace(`${i}-0`, spotOne)} style={styles.trayCup}></TrayCup> :
+          <Candy key={spotOne} id={spotOne} />
+        }
+        {spotTwo === '' ?
+          <TrayCup key={`${i}-1`} onPress={() => candyPlace(`${i}-1`, spotTwo)} style={styles.trayCup}></TrayCup> :
+          <Candy key={spotTwo} id={spotTwo} />
+        }
+        {spotThree === '' ?
+          <TrayCup key={`${i}-2`} onPress={() => candyPlace(`${i}-2`, spotThree)} style={styles.trayCup}></TrayCup> :
+          <Candy key={spotThree} id={spotThree} />
+        }
       </View>
     )
   }
@@ -37,15 +67,6 @@ const styles = StyleSheet.create({
   trayRow: {
     flexDirection: 'row',
     marginTop: 10
-  },
-  trayCup: {
-    width: 95,
-    height: 95,
-    borderRadius: 50,
-    borderColor: '#5F1D1D',
-    borderWidth: 5,
-    marginLeft: 15,
-    backgroundColor: '#471616'
   }
 });
 
