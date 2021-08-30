@@ -74,17 +74,16 @@ const Counter = (props) => {
 
 const styles = StyleSheet.create({
   counter: {
-    height: '50%',
+    height: '43%',
     width: '100%',
     backgroundColor: '#d3d3d3'
   },
   counterContainer: {
-    marginTop: 15,
     marginLeft: 15
   },
   counterRow: {
     flexDirection: 'row',
-    marginTop: 10
+    marginTop: 5
   },
   empty: {
     width: 100,

@@ -3,12 +3,14 @@ import { StyleSheet, View } from 'react-native';
 
 import Tray from '../components/Tray';
 import Counter from '../components/Counter';
+import Buttons from '../components/Buttons';
 
 const Game = (props) => {
   return (
     <View style={styles.container}>
         <Tray />
         <Counter />
+        <Buttons />
     </View>
   );
 }

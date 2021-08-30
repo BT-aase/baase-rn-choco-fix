@@ -43,28 +43,31 @@ const Candy = (props) => {
                 return (
                     <>
                         <Rect
-                            x="28"
-                            y="27"
-                            width="45"
-                            height="45"
+                            x="25"
+                            y="25"
+                            width="50"
+                            height="50"
                             strokeWidth="2"
                             stroke={stroke}
+                            rx={5}
                         />
                         <Rect
-                            x="33"
-                            y="32"
-                            width="35"
-                            height="35"
+                            x="30"
+                            y="30"
+                            width="40"
+                            height="40"
                             strokeWidth="2"
                             stroke={stroke}
+                            rx={5}
                         />
                         <Rect
-                            x="38"
-                            y="37"
-                            width="25"
-                            height="25"
+                            x="35"
+                            y="35"
+                            width="30"
+                            height="30"
                             strokeWidth="2"
                             stroke={stroke}
+                            rx={5}
                         />
                     </>
                 )

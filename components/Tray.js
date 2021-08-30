@@ -56,7 +56,7 @@ const Tray = (props) => {
 
 const styles = StyleSheet.create({
   tray: {
-    height: '50%',
+    height: '49%',
     width: '100%',
     backgroundColor: '#772424'
   },
