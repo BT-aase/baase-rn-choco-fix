@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Candy from './Candy';
 import { setSelectedCandy } from '../store/actions/game';
 
-const Paper = (props) => {
+const Counter = (props) => {
   const [selected, setSelected] = useState('');
 
   const dispatch = useDispatch();
@@ -20,18 +20,18 @@ const Paper = (props) => {
     dispatch(setSelectedCandy(selected));
   }
 
-  const paperItems = [];
+  const counterItems = [];
 
-  const paperCandy = useSelector((state) => state.game.paperCandy);
+  const counterCandy = useSelector((state) => state.game.counterCandy);
 
   for (let i = 0; i < 3; i++) {
     let flavors = ['chocolate', 'strawberry', 'caramel'];
-    let triangle = paperCandy[i][0];
-    let circle = paperCandy[i][1];
-    let square = paperCandy[i][2];
+    let triangle = counterCandy[i][0];
+    let circle = counterCandy[i][1];
+    let square = counterCandy[i][2];
 
-    paperItems.push(
-      <View key={flavors[i] + '-row'} style={styles.paperRow}>
+    counterItems.push(
+      <View key={flavors[i] + '-row'} style={styles.counterRow}>
         {triangle !== '' ?
           <Candy
             key={triangle}
@@ -64,25 +64,25 @@ const Paper = (props) => {
   }
 
   return (
-    <View style={styles.paper}>
-      <View style={styles.paperContainer}>
-        {paperItems}
+    <View style={styles.counter}>
+      <View style={styles.counterContainer}>
+        {counterItems}
       </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  paper: {
+  counter: {
     height: '50%',
     width: '100%',
     backgroundColor: '#d3d3d3'
   },
-  paperContainer: {
+  counterContainer: {
     marginTop: 15,
     marginLeft: 15
   },
-  paperRow: {
+  counterRow: {
     flexDirection: 'row',
     marginTop: 10
   },
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Paper;
+export default Counter;

@@ -2,7 +2,7 @@ import { PLACE_CANDY, SET_SELECTED_CANDY } from "../actions/game";
 
 const initialState = {
     selectedCandy: '',
-    paperCandy:
+    counterCandy:
         [
             ['chocolate-triangle', 'chocolate-circle', 'chocolate-square'],
             ['strawberry-triangle', 'strawberry-circle', 'strawberry-square'],
@@ -23,19 +23,19 @@ const gameReducer = (state = initialState, action) => {
             return { ...state, selectedCandy: action.candyId }
         case PLACE_CANDY:
             for (let i = 0; i < 3; i++) {
-                let paperRow = state.paperCandy[i];
-                let filter = paperRow.indexOf(state.selectedCandy);
+                let counterRow = state.counterCandy[i];
+                let filter = counterRow.indexOf(state.selectedCandy);
 
                 if (filter !== -1) {
-                    let updatedPaperCandy = [...state.paperCandy];
+                    let updatedCounterCandy = [...state.counterCandy];
                     let updatedTrayCandy = [...state.trayCandy];
 
                     let row = action.traySpot.split('-')[0];
                     let col = action.traySpot.split('-')[1];
 
-                    updatedPaperCandy[i][filter] = '';
+                    updatedCounterCandy[i][filter] = '';
                     updatedTrayCandy[row][col] = state.selectedCandy;
-                    return { ...state, paperCandy: updatedPaperCandy, trayCandy: updatedTrayCandy, selectedCandy: '' }
+                    return { ...state, counterCandy: updatedCounterCandy, trayCandy: updatedTrayCandy, selectedCandy: '' }
                 }
             }
         default:
