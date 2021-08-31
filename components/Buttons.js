@@ -17,11 +17,13 @@ const Buttons = (props) => {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
-                    <View style={styles.order}>
-                        <Text style={styles.buttonText}>- Notes -</Text>
-                    </View>
-                </TouchableOpacity>
+                <View>
+                    <TouchableOpacity onPress={props.openNotes}>
+                        <View style={styles.order}>
+                            <Text style={styles.buttonText}>- Notes -</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 <TouchableOpacity>
                     <View style={styles.check}>
                         <Icon name="checkmark-circle-outline" size={28} color='white' />
