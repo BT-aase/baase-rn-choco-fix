@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Modal, StyleSheet, View } from 'react-native';
+import { Text, Modal, StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import Tray from '../components/Tray';
 import Counter from '../components/Counter';
@@ -17,9 +17,20 @@ const Game = (props) => {
           transparent={true}
           visible={menuVisible}
         >
-          <View style={styles.modal}>
-            <Text>Menu</Text>
-          </View>
+          <TouchableOpacity onPress={() => setMenuVisible(false)}>
+            <View style={styles.modal}>
+              <TouchableOpacity onPress={() => console.log('restart')}>
+                <View style={styles.menu}>
+                  <Text style={styles.buttonText}>Restart</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => console.log('quit')}>
+                <View style={styles.menu}>
+                  <Text style={styles.buttonText}>Quit</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
         </Modal>
       </View>
       <Tray />
@@ -35,13 +46,28 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: 'white',
-    height: 300,
+    height: 200,
     width: 200,
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     marginHorizontal: '25%',
-    marginTop: '50%',
+    marginTop: '60%',
+    borderRadius: 10,
     elevation: 5
+  },
+  menu: {
+    height: 50,
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#772424',
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginHorizontal: 10
+  },
+  buttonText: {
+    color: 'white'
   }
 });
 
