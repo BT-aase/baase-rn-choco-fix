@@ -9,29 +9,39 @@ const Game = (props) => {
 
   const [menuVisible, setMenuVisible] = useState(false);
 
-  const openMenu = () => {
-    console.log('text');
-  }
-
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={menuVisible}
-      >
-        <Text>Menu</Text>
-      </Modal>
+      <View style={styles.modalContainer}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={menuVisible}
+        >
+          <View style={styles.modal}>
+            <Text>Menu</Text>
+          </View>
+        </Modal>
+      </View>
       <Tray />
       <Counter />
-      <Buttons openMenu={() => openMenu()} menu={menuVisible}/>
+      <Buttons openMenu={() => setMenuVisible(true)} menu={menuVisible} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+  modal: {
+    backgroundColor: 'white',
+    height: 300,
+    width: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: '25%',
+    marginTop: '50%',
+    elevation: 5
   }
 });
 

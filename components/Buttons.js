@@ -2,16 +2,21 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+const text = () => {
+    console.log('text');
+}
+
 const Buttons = (props) => {
-    console.log(props)
     return (
         <View style={styles.buttons}>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={props.openMenu}>
-                    <View style={styles.menu}>
-                        <Text style={styles.buttonText}>{props.menu.toString()}</Text>
-                    </View>
-                </TouchableOpacity>
+                <View>
+                    <TouchableOpacity onPress={props.openMenu}>
+                        <View style={styles.menu}>
+                            <Text style={styles.buttonText}>Menu</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 <TouchableOpacity>
                     <View style={styles.order}>
                         <Text style={styles.buttonText}>- Notes -</Text>
@@ -19,7 +24,7 @@ const Buttons = (props) => {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.check}>
-                        <Icon name="checkmark-circle-outline" size={28} color='white'/>
+                        <Icon name="checkmark-circle-outline" size={28} color='white' />
                     </View>
                 </TouchableOpacity>
             </View>
