@@ -4,9 +4,9 @@ import { Text, Modal, StyleSheet, View, Image, TouchableOpacity } from 'react-na
 import Tray from '../components/Tray';
 import Counter from '../components/Counter';
 import Buttons from '../components/Buttons';
+import Notepad from '../components/Notepad';
 
 const Game = (props) => {
-
   const [menuVisible, setMenuVisible] = useState(false);
   const [notesVisible, setNotesVisible] = useState(false);
 
@@ -32,17 +32,9 @@ const Game = (props) => {
           </View>
         </TouchableOpacity>
       </Modal>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={notesVisible}
-      >
-        <TouchableOpacity onPress={() => setNotesVisible(false)} style={{ flex: 1 }}>
-          <View style={styles.notesContainer}>
-            <Image style={styles.notesImage} source={require('./choc_fix_puz1.png')} />
-          </View>
-        </TouchableOpacity>
-      </Modal>
+      <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
+        <Image style={styles.notesImage} source={require('./choc_fix_puz1.png')} />
+      </Notepad>
       <Tray />
       <Counter />
       <Buttons openMenu={() => setMenuVisible(true)} openNotes={() => setNotesVisible(true)} />
@@ -75,18 +67,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     marginHorizontal: 10
-  },
-  notesContainer: {
-    backgroundColor: '#ebb482',
-    height: 500,
-    width: 335,
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    marginLeft: '4%',
-    marginTop: '40%',
-    elevation: 5,
-    borderColor: '#c46e1f',
-    borderWidth: 12
   },
   buttonText: {
     color: 'white'

@@ -3,7 +3,6 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Circle, Polygon, Rect } from 'react-native-svg';
 
 const Candy = (props) => {
-
     const flavor = props.id.split('-')[0];
     const shape = props.id.split('-')[1];
 
