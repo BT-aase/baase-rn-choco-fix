@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Modal, StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Tray from '../components/Tray';
 import Counter from '../components/Counter';
@@ -12,28 +12,26 @@ const Game = (props) => {
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={menuVisible}
-      >
-        <TouchableOpacity onPress={() => setMenuVisible(false)} style={{ flex: 1 }}>
-          <View style={styles.menuContainer}>
-            <TouchableOpacity onPress={() => console.log('restart')}>
-              <View style={styles.menuButtons}>
-                <Text style={styles.buttonText}>Restart</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log('quit')}>
-              <View style={styles.menuButtons}>
-                <Text style={styles.buttonText}>Quit</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-      </Modal>
-      <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
+      <Notepad visible={menuVisible} onClose={() => setMenuVisible(false)}>
+        <View style={styles.menuContainer}>
+          <TouchableOpacity onPress={() => console.log('restart')}>
+            <View style={styles.menuButtons}>
+              <Text style={styles.buttonText}>Restart</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('quit')}>
+            <View style={styles.menuButtons}>
+              <Text style={styles.buttonText}>Quit</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </Notepad>
+      {/* <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
         <Image style={styles.notesImage} source={require('./choc_fix_puz1.png')} />
+      </Notepad> */}
+      <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
+        <Text style={styles.solutionText}>Order Complete!</Text>
+        <Image style={styles.solutionImage} source={require('./solution_puz1.png')} />
       </Notepad>
       <Tray />
       <Counter />
@@ -47,19 +45,16 @@ const styles = StyleSheet.create({
     flex: 1
   },
   menuContainer: {
-    backgroundColor: 'white',
-    height: 200,
+    backgroundColor: '#ebb482',
+    height: 175,
     width: 200,
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal: '25%',
-    marginTop: '60%',
-    borderRadius: 10,
-    elevation: 5
+    marginHorizontal: '25%'
   },
   menuButtons: {
     height: 50,
-    width: 100,
+    width: 200,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#772424',
@@ -74,6 +69,16 @@ const styles = StyleSheet.create({
   notesImage: {
     height: 300,
     width: 300
+  },
+  solutionText:{
+    marginTop: 25,
+    marginBottom: 25,
+    fontSize: 25,
+    textDecorationLine: 'underline'
+  },
+  solutionImage: {
+    height: 250,
+    width: 250
   }
 });
 

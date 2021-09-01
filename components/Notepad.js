@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Modal, TouchableOpacity, StyleSheet } from 'react-native';
-import Svg, { Rect } from 'react-native-svg';
 
 const Notepad = (props) => {
     return (
