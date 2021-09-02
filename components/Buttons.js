@@ -3,10 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { setSolved } from '../store/actions/game';
+
 const Buttons = (props) => {
 
     const trayCandy = useSelector((state) => state.game.trayCandy);
     const solutionCandy = useSelector((state) => state.game.solutionCandy);
+
+    const dispatch = useDispatch();
 
     const checkDisabled = () => {
         let trayRow;
@@ -27,7 +31,7 @@ const Buttons = (props) => {
 
     const checkSolved = () => {
         if (JSON.stringify(trayCandy) === JSON.stringify(solutionCandy)) {
-            console.log('solved');
+            dispatch(setSolved());
         }
     };
 

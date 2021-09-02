@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from "react-redux";
 
 import Tray from '../components/Tray';
 import Counter from '../components/Counter';
 import Buttons from '../components/Buttons';
 import Notepad from '../components/Notepad';
+import { resetGame } from '../store/actions/game';
 
 const Game = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [notesVisible, setNotesVisible] = useState(false);
+  
+  const solved = useSelector((state) => state.game.solved);
+
+  const dispatch = useDispatch();
+
+  const restart = (action) => {
+    dispatch(resetGame(action))
+    setMenuVisible(false)
+  }
 
   return (
     <View style={styles.container}>
       <Notepad visible={menuVisible} onClose={() => setMenuVisible(false)}>
         <View style={styles.menuContainer}>
-          <TouchableOpacity onPress={() => console.log('restart')}>
+          <TouchableOpacity onPress={() => restart('restart')}>
             <View style={styles.menuButtons}>
               <Text style={styles.buttonText}>Restart</Text>
             </View>
@@ -26,10 +37,10 @@ const Game = (props) => {
           </TouchableOpacity>
         </View>
       </Notepad>
-      {/* <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
-        <Image style={styles.notesImage} source={require('./choc_fix_puz1.png')} />
-      </Notepad> */}
       <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
+        <Image style={styles.notesImage} source={require('./choc_fix_puz1.png')} />
+      </Notepad>
+      <Notepad visible={solved}>
         <Text style={styles.solutionText}>Order Complete!</Text>
         <Image style={styles.solutionImage} source={require('./solution_puz1.png')} />
       </Notepad>
