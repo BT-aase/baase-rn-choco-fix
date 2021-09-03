@@ -3,11 +3,11 @@ import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Start = (props) => {
     return (
-        <View style={styles.linearGradient}>
-            <View style={styles.backgroundContainer}>
+        <View style={styles.container}>
+            <View style={styles.background}>
                 <Image style={styles.logo} source={require('./choc_fix_logo.png')} />
                 <View style={styles.menuContainer}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Game')}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LevelSelect')}>
                         <View style={[styles.menuButtons, styles.boldButton]}>
                             <Text style={styles.buttonText}>--- Play ---</Text>
                         </View>
@@ -24,11 +24,11 @@ const Start = (props) => {
 };
 
 const styles = StyleSheet.create({
-    linearGradient: {
+    container: {
         flex: 1,
         backgroundColor: '#ebb482',
     },
-    backgroundContainer: {
+    background: {
         height: '87%',
         width: '85%',
         marginLeft: '7.5%',
