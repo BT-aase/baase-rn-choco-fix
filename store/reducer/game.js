@@ -1,4 +1,4 @@
-import { PLACE_CANDY, RESET_GAME, SELECT_LEVEL, SET_SELECTED_CANDY, SET_SOLVED } from "../actions/game";
+import { PLACE_CANDY, QUIT_GAME, RESET_GAME, SELECT_LEVEL, SET_SELECTED_CANDY, SET_SOLVED } from "../actions/game";
 
 const initialState = {
     levelNotes: '',
@@ -38,8 +38,8 @@ const gameReducer = (state = initialState, action) => {
                 let filter = counterRow.indexOf(state.selectedCandy);
 
                 if (filter !== -1) {
-                    let updatedCounterCandy = { ...state.counterCandy };
-                    let updatedTrayCandy = { ...state.trayCandy };
+                    let updatedCounterCandy = [...state.counterCandy];
+                    let updatedTrayCandy = [...state.trayCandy];
 
                     let row = action.traySpot.split('-')[0];
                     let col = action.traySpot.split('-')[1];
@@ -61,6 +61,31 @@ const gameReducer = (state = initialState, action) => {
                         ['caramel-triangle', 'caramel-circle', 'caramel-square'],
                     ],
                 trayCandy:
+                    [
+                        ['', '', ''],
+                        ['', '', ''],
+                        ['', '', '']
+                    ],
+                solved: false
+            }
+        case QUIT_GAME:
+            return {
+                ...state,
+                levelNotes: '',
+                levelSolution: '',
+                counterCandy:
+                [
+                    ['chocolate-triangle', 'chocolate-circle', 'chocolate-square'],
+                    ['strawberry-triangle', 'strawberry-circle', 'strawberry-square'],
+                    ['caramel-triangle', 'caramel-circle', 'caramel-square'],
+                ],
+            trayCandy:
+                [
+                    ['', '', ''],
+                    ['', '', ''],
+                    ['', '', '']
+                ],
+                solutionCandy:
                     [
                         ['', '', ''],
                         ['', '', ''],

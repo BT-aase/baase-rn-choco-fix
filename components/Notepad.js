@@ -9,7 +9,7 @@ const Notepad = (props) => {
             visible={props.visible}
         >
             <TouchableOpacity onPress={props.onClose} style={{ flex: 1 }}>
-                <View style={styles.spiralContainer}>
+                <View style={{ ...styles.spiralContainer, marginTop: props.display === 'solution' ? '15%' : '30%' }}>
                     <View style={styles.spiral}>
                         <View style={styles.loop} />
                         <View style={styles.hole} />
@@ -35,7 +35,11 @@ const Notepad = (props) => {
                         <View style={styles.hole} />
                     </View>
                 </View>
-                <View style={styles.notesContainer}>{props.children}</View>
+                <View style={{
+                    ...styles.notesContainer,
+                    height: props.display === 'solution' ? 550 : 400,
+                    marginVertical: props.display === 'solution' ? '25%' : '40%'
+                }}>{props.children}</View>
             </TouchableOpacity>
         </Modal>
     )
@@ -44,9 +48,7 @@ const Notepad = (props) => {
 const styles = StyleSheet.create({
     notesContainer: {
         backgroundColor: '#ebb482',
-        height: 400,
         width: 335,
-        marginVertical: '40%',
         justifyContent: "center",
         alignItems: "center",
         marginLeft: '4%',
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
         borderWidth: 12
     },
     spiralContainer: {
-        marginTop: '30%',
         marginLeft: '2%',
         flexDirection: 'row',
         position: 'absolute',

@@ -3,6 +3,7 @@ export const SET_SELECTED_CANDY = 'SET_SELECTED_CANDY';
 export const PLACE_CANDY = 'PLACE_CANDY';
 export const SET_SOLVED = 'SET_SOLVED';
 export const RESET_GAME = 'RESET_GAME';
+export const QUIT_GAME = 'QUIT_GAME';
 
 
 export const selectLevel = (details, notes, solution) => {
@@ -38,5 +39,11 @@ export const resetGame = (state) => {
   return {
     type: RESET_GAME,
     resetState: state
+  }
+}
+
+export const quitGame = (state)  => {
+  return {
+    type : QUIT_GAME
   }
 }
