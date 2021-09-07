@@ -1,7 +1,18 @@
+export const SELECT_LEVEL = 'SELECT_LEVEL';
 export const SET_SELECTED_CANDY = 'SET_SELECTED_CANDY';
 export const PLACE_CANDY = 'PLACE_CANDY';
 export const SET_SOLVED = 'SET_SOLVED';
 export const RESET_GAME = 'RESET_GAME';
+
+
+export const selectLevel = (details, notes, solution) => {
+  return {
+    type: SELECT_LEVEL,
+    levelDetails: details,
+    levelNotes: notes,
+    levelSolution: solution
+  }
+}
 
 export const setSelectedCandy = (id) => {
   return {

@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Tabs from 'react-native-tabs';
+
+import details from '../puzzles/details/details';
+import notes from '../puzzles/notes/notes';
+import solutions from '../puzzles/solutions/solutions';
+import { selectLevel } from '../store/actions/game';
 
 
 const LevelSelect = (props) => {
 
-    const [level, setLevel] = useState('beginner');
-    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const dispatch = useDispatch();
+
+    const [diff, setDiff] = useState('beginner');
 
     const selectedBackground = (input) => {
         let color;
@@ -39,7 +46,7 @@ const LevelSelect = (props) => {
     const selectedTab = (input) => {
         let color = 'white';
 
-        if (input === level) {
+        if (input === diff) {
             switch (input) {
                 case 'beginner':
                     color = '#ace600'
@@ -65,7 +72,7 @@ const LevelSelect = (props) => {
     }
 
     const selectedTabText = (input) => {
-        return input === level ? 'white' : 'black'
+        return input === diff ? 'white' : 'black'
     }
 
     const buttonStyle = (input) => {
@@ -97,41 +104,48 @@ const LevelSelect = (props) => {
     const buttonNumbers = (input) => {
         switch (input) {
             case 'beginner':
-                return  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             case 'intermediate':
-                return  [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+                return [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
             case 'advanced':
-                return  [21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+                return [21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
             case 'expert':
-                return  [31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+                return [31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
             default:
                 break;
         }
     }
 
+    const levelSelect = (levelNum) => {
+        dispatch(selectLevel(details[levelNum - 1], notes[levelNum - 1], solutions[levelNum - 1]));
+        props.navigation.navigate('Game')
+    }
+
     return (
-        <View style={selectedBackground(level)}>
-            <Tabs selected={level} style={{ backgroundColor: 'white' }} onSelect={gl => setLevel(gl.props.level)}>
-                <View level="beginner" style={selectedTab('beginner')}>
+        <View style={selectedBackground(diff)}>
+            <Tabs selected={diff} style={{ backgroundColor: 'white' }} onSelect={dl => setDiff(dl.props.diff)}>
+                <View diff="beginner" style={selectedTab('beginner')}>
                     <Text style={{ color: selectedTabText('beginner') }}>Beginner</Text>
                 </View>
-                <View level="intermediate" style={selectedTab('intermediate')}>
+                <View diff="intermediate" style={selectedTab('intermediate')}>
                     <Text style={{ color: selectedTabText('intermediate') }}>Intermediate</Text>
                 </View>
-                <View level="advanced" style={selectedTab('advanced')}>
+                <View diff="advanced" style={selectedTab('advanced')}>
                     <Text style={{ color: selectedTabText('advanced') }}>Advanced</Text>
                 </View>
-                <View level="expert" style={selectedTab('expert')}>
+                <View diff="expert" style={selectedTab('expert')}>
                     <Text style={{ color: selectedTabText('expert') }}>Expert</Text>
                 </View>
             </Tabs>
             <View style={styles.buttonContainer}>
-                {buttonNumbers(level).map(number => (
-                    <View style={buttonStyle(level)}>
-                        <Text style={styles.buttonText}>
-                            {number}
-                        </Text>
-                    </View>
+                {buttonNumbers(diff).map(number => (
+                    <TouchableOpacity key={number} onPress={() => levelSelect(number)}>
+                        <View style={buttonStyle(diff)}>
+                            <Text style={styles.buttonText}>
+                                {number}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
                 ))}
             </View>
         </View>

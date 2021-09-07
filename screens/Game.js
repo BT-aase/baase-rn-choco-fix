@@ -11,7 +11,8 @@ import { resetGame } from '../store/actions/game';
 const Game = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [notesVisible, setNotesVisible] = useState(false);
-  
+
+  const notes = useSelector((state) => state.game.levelNotes)
   const solved = useSelector((state) => state.game.solved);
 
   const dispatch = useDispatch();
@@ -38,11 +39,11 @@ const Game = (props) => {
         </View>
       </Notepad>
       <Notepad visible={notesVisible} onClose={() => setNotesVisible(false)}>
-        <Image style={styles.notesImage} source={require('./choc_fix_puz1.png')} />
+        <Image style={styles.notesImage} source={notes} />
       </Notepad>
       <Notepad visible={solved}>
         <Text style={styles.solutionText}>Order Complete!</Text>
-        <Image style={styles.solutionImage} source={require('./solution_puz1.png')} />
+        <Image style={styles.solutionImage} source={require('../puzzles/solutions/puzzle1_solution.png')} />
       </Notepad>
       <Tray />
       <Counter />

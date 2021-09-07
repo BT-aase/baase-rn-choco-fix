@@ -1,6 +1,8 @@
-import { PLACE_CANDY, RESET_GAME, SET_SELECTED_CANDY, SET_SOLVED } from "../actions/game";
+import { PLACE_CANDY, RESET_GAME, SELECT_LEVEL, SET_SELECTED_CANDY, SET_SOLVED } from "../actions/game";
 
 const initialState = {
+    levelNotes: '',
+    levelSolution: '',
     selectedCandy: '',
     counterCandy:
         [
@@ -16,15 +18,18 @@ const initialState = {
         ],
     solutionCandy:
         [
-            ['strawberry-circle', 'strawberry-triangle', 'strawberry-square'],
-            ['chocolate-circle', 'chocolate-triangle', 'chocolate-square'],
-            ['caramel-circle', 'caramel-triangle', 'caramel-square'],
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
         ],
     solved: false
 };
 
 const gameReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SELECT_LEVEL: {
+            return { ...state, levelNotes: action.levelNotes, levelSolution: action.levelSolution, solutionCandy: action.levelDetails }
+        }
         case SET_SELECTED_CANDY:
             return { ...state, selectedCandy: action.candyId }
         case PLACE_CANDY:
