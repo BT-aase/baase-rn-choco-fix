@@ -6,9 +6,10 @@ export const RESET_GAME = 'RESET_GAME';
 export const QUIT_GAME = 'QUIT_GAME';
 
 
-export const selectLevel = (details, notes, solution) => {
+export const selectLevel = (level, details, notes, solution) => {
   return {
     type: SELECT_LEVEL,
+    selectedLevel: level,
     levelDetails: details,
     levelNotes: notes,
     levelSolution: solution

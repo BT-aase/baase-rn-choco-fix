@@ -10,13 +10,15 @@ import { resetGame, quitGame } from '../store/actions/game';
 
 const Game = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [notesVisible, setNotesVisible] = useState(false);
+  const [notesVisible, setNotesVisible] = useState(true);
 
   const notes = useSelector((state) => state.game.levelNotes);
   const solution = useSelector((state) => state.game.levelSolution);
   const solved = useSelector((state) => state.game.solved);
 
   const dispatch = useDispatch();
+
+  setTimeout(() => setNotesVisible(false), 5000)
 
   const restart = () => {
     dispatch(resetGame())

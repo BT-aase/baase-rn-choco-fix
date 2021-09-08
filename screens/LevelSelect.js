@@ -117,7 +117,7 @@ const LevelSelect = (props) => {
     }
 
     const levelSelect = (levelNum) => {
-        dispatch(selectLevel(details[levelNum], notes[levelNum], solutions[levelNum]));
+        dispatch(selectLevel(levelNum, details[levelNum], notes[levelNum], solutions[levelNum]));
         props.navigation.navigate('Game')
     }
 

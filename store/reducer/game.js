@@ -1,6 +1,7 @@
 import { PLACE_CANDY, QUIT_GAME, RESET_GAME, SELECT_LEVEL, SET_SELECTED_CANDY, SET_SOLVED } from "../actions/game";
 
 const initialState = {
+    selectedLevel: 0,
     levelNotes: '',
     levelSolution: '',
     selectedCandy: '',
@@ -28,7 +29,13 @@ const initialState = {
 const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         case SELECT_LEVEL: {
-            return { ...state, levelNotes: action.levelNotes, levelSolution: action.levelSolution, solutionCandy: action.levelDetails }
+            return {
+                ...state,
+                selectedLevel: action.selectedLevel,
+                levelNotes: action.levelNotes,
+                levelSolution: action.levelSolution,
+                solutionCandy: action.levelDetails
+            }
         }
         case SET_SELECTED_CANDY:
             return { ...state, selectedCandy: action.candyId }
@@ -74,17 +81,17 @@ const gameReducer = (state = initialState, action) => {
                 levelNotes: '',
                 levelSolution: '',
                 counterCandy:
-                [
-                    ['chocolate-triangle', 'chocolate-circle', 'chocolate-square'],
-                    ['strawberry-triangle', 'strawberry-circle', 'strawberry-square'],
-                    ['caramel-triangle', 'caramel-circle', 'caramel-square'],
-                ],
-            trayCandy:
-                [
-                    ['', '', ''],
-                    ['', '', ''],
-                    ['', '', '']
-                ],
+                    [
+                        ['chocolate-triangle', 'chocolate-circle', 'chocolate-square'],
+                        ['strawberry-triangle', 'strawberry-circle', 'strawberry-square'],
+                        ['caramel-triangle', 'caramel-circle', 'caramel-square'],
+                    ],
+                trayCandy:
+                    [
+                        ['', '', ''],
+                        ['', '', ''],
+                        ['', '', '']
+                    ],
                 solutionCandy:
                     [
                         ['', '', ''],
