@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,19 +6,26 @@ import Tray from '../components/Tray';
 import Counter from '../components/Counter';
 import Buttons from '../components/Buttons';
 import Notepad from '../components/Notepad';
-import { resetGame, quitGame } from '../store/actions/game';
+import details from '../puzzles/details/details';
+import notes from '../puzzles/notes/notes';
+import solutions from '../puzzles/solutions/solutions';
+import { selectLevel, resetGame, quitGame } from '../store/actions/game';
 
 const Game = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [notesVisible, setNotesVisible] = useState(true);
+  const [notesVisible, setNotesVisible] = useState(false);
 
-  const notes = useSelector((state) => state.game.levelNotes);
+  const levelNotes = useSelector((state) => state.game.levelNotes);
   const solution = useSelector((state) => state.game.levelSolution);
   const solved = useSelector((state) => state.game.solved);
+  const selectedLevel = useSelector((state) => state.game.selectedLevel);
 
   const dispatch = useDispatch();
 
-  setTimeout(() => setNotesVisible(false), 5000)
+  useEffect(() => {
+    setNotesVisible(true);
+    setTimeout(() => setNotesVisible(false), 5000);
+  }, [selectedLevel])
 
   const restart = () => {
     dispatch(resetGame())
@@ -28,6 +35,11 @@ const Game = (props) => {
   const quit = () => {
     dispatch(quitGame())
     props.navigation.navigate('Start');
+  }
+
+  const next = () => {
+    dispatch(resetGame())
+    dispatch(selectLevel(selectedLevel + 1, details[selectedLevel + 1], notes[selectedLevel + 1], solutions[selectedLevel + 1]));
   }
 
   return (
@@ -47,21 +59,21 @@ const Game = (props) => {
         </View>
       </Notepad>
       <Notepad visible={notesVisible} display='notes' onClose={() => setNotesVisible(false)}>
-        <Image style={styles.notesImage} source={notes} />
+        <Image style={styles.notesImage} source={levelNotes} />
       </Notepad>
       <Notepad visible={solved} display='solution'>
         <Text style={styles.solutionText}>Order Complete!</Text>
         <Image style={styles.solutionImage} source={solution} />
-        <TouchableOpacity onPress={() => console.log('next')}>
-            <View style={styles.menuButtons}>
-              <Text style={styles.buttonText}>Next</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => quit()}>
-            <View style={styles.menuButtons}>
-              <Text style={styles.buttonText}>Quit</Text>
-            </View>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={() => next()}>
+          <View style={styles.menuButtons}>
+            <Text style={styles.buttonText}>Next</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => quit()}>
+          <View style={styles.menuButtons}>
+            <Text style={styles.buttonText}>Quit</Text>
+          </View>
+        </TouchableOpacity>
       </Notepad>
       <Tray />
       <Counter />
@@ -101,7 +113,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
   },
-  solutionText:{
+  solutionText: {
     marginTop: 25,
     marginBottom: 25,
     fontSize: 25,

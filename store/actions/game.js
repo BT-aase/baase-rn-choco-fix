@@ -33,18 +33,18 @@ export const placeCandy = (spot) => {
 export const setSolved = () => {
   return {
     type: SET_SOLVED
-  }
-}
+  };
+};
 
 export const resetGame = (state) => {
   return {
     type: RESET_GAME,
     resetState: state
-  }
-}
+  };
+};
 
-export const quitGame = (state)  => {
+export const quitGame = (state) => {
   return {
-    type : QUIT_GAME
-  }
-}
+    type: QUIT_GAME
+  };
+};
