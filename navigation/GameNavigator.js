@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Start from '../screens/Start';
+import HowToPlay from '../screens/HowToPlay';
 import LevelSelect from '../screens/LevelSelect';
 import Game from '../screens/Game';
 
@@ -16,6 +17,10 @@ export default GameNavigator = () => {
                 <GameStackNavigator.Screen
                     name="Start"
                     component={Start}
+                />
+                <GameStackNavigator.Screen
+                    name="HowToPlay"
+                    component={HowToPlay}
                 />
                 <GameStackNavigator.Screen
                     name="LevelSelect"

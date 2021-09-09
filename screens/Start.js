@@ -12,7 +12,7 @@ const Start = (props) => {
                             <Text style={styles.buttonText}>--- Play ---</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('guide')}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('HowToPlay')}>
                         <View style={styles.menuButtons}>
                             <Text style={styles.buttonText}>How to Play</Text>
                         </View>

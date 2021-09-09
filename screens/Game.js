@@ -59,11 +59,11 @@ const Game = (props) => {
         </View>
       </Notepad>
       <Notepad visible={notesVisible} display='notes' onClose={() => setNotesVisible(false)}>
-        <Image style={styles.notesImage} source={levelNotes} />
+        <Image source={levelNotes} />
       </Notepad>
       <Notepad visible={solved} display='solution'>
         <Text style={styles.solutionText}>Order Complete!</Text>
-        <Image style={styles.solutionImage} source={solution} />
+        <Image source={solution} />
         <TouchableOpacity onPress={() => next()}>
           <View style={styles.menuButtons}>
             <Text style={styles.buttonText}>Next</Text>
@@ -109,19 +109,11 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white'
   },
-  notesImage: {
-    height: 300,
-    width: 300,
-  },
   solutionText: {
     marginTop: 25,
     marginBottom: 25,
     fontSize: 25,
     textDecorationLine: 'underline'
-  },
-  solutionImage: {
-    height: 250,
-    width: 250
   }
 });
 
