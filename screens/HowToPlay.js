@@ -4,6 +4,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import PageOne from '../components/HowToPlay/PageOne';
 import PageTwo from '../components/HowToPlay/PageTwo';
+import PageThree from '../components/HowToPlay/PageThree';
+import PageFour from '../components/HowToPlay/PageFour';
+import PageFive from '../components/HowToPlay/PageFive';
 
 const HowToPlay = (props) => {
 
@@ -15,6 +18,12 @@ const HowToPlay = (props) => {
                 return <PageOne />
             case 2: 
                 return <PageTwo />
+            case 3:
+                return <PageThree/>
+            case 4:
+                return <PageFour/>
+            case 5:
+                return <PageFive/>
             default:
                 break;
         }
